@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon app.js",
-    "start": "node app.js"
+    "dev-server": "nodemon app.js",
+    "prod-server": "node app.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
