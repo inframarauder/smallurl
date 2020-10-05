@@ -3,8 +3,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
-  email: { type: String, required: 'Email is required!', unique: true },
-  password: { type: String, required: 'Password is required!' },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
 });
 
 userSchema.methods.createToken = function () {
@@ -28,3 +28,5 @@ userSchema.pre('save', async function (next) {
     console.error('Error in password hashing!', error);
   }
 });
+
+module.exports = mongoose.model('User', userSchema);
