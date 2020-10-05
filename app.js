@@ -4,7 +4,6 @@ const bodyparser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const api = require('./api/routes');
-const { config } = require('dotenv/types');
 
 //init express app
 const app = express();

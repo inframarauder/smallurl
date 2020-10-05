@@ -6,7 +6,7 @@ const ValidationMiddleware = require('../middlewares/ValidationMiddleware');
 
 //auth
 router.post(
-  '/auth/singup',
+  '/auth/signup',
   ValidationMiddleware.validateUser,
   AuthController.signup
 );
@@ -28,8 +28,12 @@ router.get(
   AuthMiddleware.isAuthenticated,
   UrlController.getDashboard
 );
-router.get('/url/search', UrlController.getUrl);
-router.delete('/url/delete/:urlId', UrlController.deleteUrl);
+router.get('/url/search', AuthMiddleware.isAuthenticated, UrlController.getUrl);
+router.delete(
+  '/url/delete/:urlId',
+  AuthMiddleware.isAuthenticated,
+  UrlController.deleteUrl
+);
 router.get('/url/redirect/:shortUrl', UrlController.redirectToUrl);
 
 module.exports = router;

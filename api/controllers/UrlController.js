@@ -2,13 +2,13 @@ const Url = require('../models/url.model');
 
 exports.createShortUrl = async (req, res) => {
   try {
-    let url = await Url.findOne({ longUrl: req.body.url, user: req.user });
+    let url = await Url.findOne({ longUrl: req.body.longUrl, user: req.user });
     if (url) {
       return res.status(400).json({
         error: 'You have already have a shortened version of this url!',
       });
     } else {
-      url = await new Url(req.body).save();
+      url = await new Url({ ...req.body, user: req.user }).save();
       return res.status(201).json(url);
     }
   } catch (error) {
@@ -24,7 +24,7 @@ exports.redirectToUrl = async (req, res) => {
     if (!url) {
       return res.status(404).json({ error: 'URL not registered!' });
     } else {
-      return res.redirect(url.longUrl);
+      return res.status(200).json({ longUrl: url.longUrl });
     }
   } catch (error) {
     console.error('Error in redirection', error);
@@ -35,7 +35,7 @@ exports.redirectToUrl = async (req, res) => {
 exports.getDashboard = async (req, res) => {
   try {
     let urls = await Url.find({ user: req.user }).sort({ _id: -1 });
-    return res.status(200).json(url);
+    return res.status(200).json(urls);
   } catch (error) {
     console.error('Error in retrieving dashboard', error);
     return res.status(500).json({ error: 'Internal server error!' });

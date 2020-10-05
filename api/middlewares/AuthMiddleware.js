@@ -2,13 +2,16 @@ const jwt = require('jsonwebtoken');
 
 //middleware to protect routes
 exports.isAuthenticated = (req, res, next) => {
+  if (!req.headers.authorization) {
+    return res.status(403).json({ error: 'User not authorized!' });
+  }
   let token = req.headers.authorization.split(' ')[1];
   if (!token) {
     return res.status(403).json({ error: 'Access denied, no token provided!' });
   } else {
     try {
       const payload = jwt.verify(token, process.env.JWT_PRIVATE_KEY);
-      req.user = payload;
+      req.user = payload._id;
       next();
     } catch (error) {
       if (error.name === 'TokenExpiredError') {
