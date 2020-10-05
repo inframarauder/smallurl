@@ -19,7 +19,11 @@ exports.createShortUrl = async (req, res) => {
 
 exports.redirectToUrl = async (req, res) => {
   try {
-    let url = await Url.findOne({ shortUrl: req.params.shortUrl });
+    let url = await Url.findOneAndUpdate(
+      { shortUrl: req.params.shortUrl },
+      { $inc: { clicks: 1 } },
+      { new: true, runValidators: true }
+    );
 
     if (!url) {
       return res.status(404).json({ error: 'URL not registered!' });

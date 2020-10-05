@@ -5,7 +5,7 @@ const urlSchema = new mongoose.Schema({
   longUrl: { type: String, required: true, index: 1 },
   shortUrl: { type: String },
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', index: 1 },
-  clicks: { type: Number },
+  clicks: { type: Number, default: 0 },
 });
 
 urlSchema.pre('save', function (next) {

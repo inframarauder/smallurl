@@ -34,6 +34,6 @@ router.delete(
   AuthMiddleware.isAuthenticated,
   UrlController.deleteUrl
 );
-router.get('/url/redirect/:shortUrl', UrlController.redirectToUrl);
+router.put('/url/redirect/:shortUrl', UrlController.redirectToUrl);
 
 module.exports = router;
