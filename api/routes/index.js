@@ -4,9 +4,11 @@ const router = require('express').Router();
 router.post('/auth/singup');
 router.post('/auth/login');
 
-//url-shortening
-router.post('/urlshort/create');
-router.get('/urlshort/redirect/:shortUrl');
-router.get('/urlshort/dashboard/:userId');
+//url
+router.post('/url/create');
+router.get('/url/dashboard');
+router.get('/url/search');
+router.delete('/url/delete/:urlId');
+router.get('/url/redirect/:shortUrl');
 
 module.exports = router;
