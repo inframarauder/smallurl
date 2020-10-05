@@ -12,7 +12,7 @@ app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
 
 //connect to mongoDB:
-const dbUri = process.env.DB_URI;
+const { DB_URI } = process.env;
 mongoose
   .connect(dbUri, {
     useFindAndModify: false,
