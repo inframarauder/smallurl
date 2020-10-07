@@ -18,6 +18,11 @@ router.post(
 
 //url
 router.post(
+  '/url/quick_create',
+  ValidationMiddleware.validateUrl,
+  UrlController.quickCreate
+);
+router.post(
   '/url/create',
   AuthMiddleware.isAuthenticated,
   ValidationMiddleware.validateUrl,

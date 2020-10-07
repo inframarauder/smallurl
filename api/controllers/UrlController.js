@@ -1,5 +1,15 @@
 const Url = require('../models/url.model');
 
+exports.quickCreate = async (req, res) => {
+  try {
+    let url = await new Url(req.body).save();
+    return res.status(201).json({ shortUrl: url.shortUrl });
+  } catch (error) {
+    console.error('Error in quick create', error);
+    return res.status(500).json({ error: 'Internal server error!' });
+  }
+};
+
 exports.createShortUrl = async (req, res) => {
   try {
     let url = await Url.findOne({ longUrl: req.body.longUrl, user: req.user });
