@@ -1,9 +1,20 @@
 import React from 'react';
-import Landing from './Components/Landing';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './Redux/store';
+import Landing from './Containers/Landing';
 import './App.css';
 
 function App() {
-  return <Landing />;
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <Route path='/' exact component={Landing} />
+        </Switch>
+      </BrowserRouter>
+    </Provider>
+  );
 }
 
 export default App;

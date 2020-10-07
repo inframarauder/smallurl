@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button, Form } from 'react-bootstrap';
 
-const UrlCard = () => {
+const ShortenUrlCard = () => {
   return (
     <Card className='text-center card-width'>
       <Card.Body>
@@ -20,4 +20,4 @@ const UrlCard = () => {
   );
 };
 
-export default UrlCard;
+export default ShortenUrlCard;
