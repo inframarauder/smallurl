@@ -11,7 +11,7 @@ exports.signup = async (req, res) => {
     } else {
       user = await new User(req.body).save();
       const token = user.createToken();
-      return res.status(201).json({ token, userId: user._id });
+      return res.status(201).json({ token, email: user.email });
     }
   } catch (error) {
     console.error('Error in signup', error);
@@ -28,7 +28,7 @@ exports.login = async (req, res) => {
       let valid = await bcrypt.compare(req.body.password, user.password);
       if (valid) {
         const token = user.createToken();
-        return res.status(200).json({ token, userId: user._id });
+        return res.status(200).json({ token, email: user.email });
       } else {
         return res.status(401).json({ error: 'Passwords do not match!' });
       }
