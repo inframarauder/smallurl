@@ -6,6 +6,7 @@ export const signup = (body) => async (dispatch) => {
   try {
     const { data } = await Api.signup(body);
     localStorage.setItem('token', data.token);
+    localStorage.setItem('user', data.email);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: data.email,
@@ -25,6 +26,7 @@ export const login = (body) => async (dispatch) => {
   try {
     const { data } = await Api.login(body);
     localStorage.setItem('token', data.token);
+    localStorage.setItem('user', data.email);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: data.email,
@@ -42,5 +44,14 @@ export const login = (body) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem('token');
+  localStorage.removeItem('user');
   dispatch({ type: LOGOUT });
+};
+
+export const loadUser = () => (dispatch) => {
+  if (localStorage.getItem('user')) {
+    dispatch({ type: LOGIN_SUCCESS, payload: localStorage.getItem('user') });
+  } else {
+    dispatch({ type: LOGIN_FAILURE });
+  }
 };
