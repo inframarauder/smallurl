@@ -7,6 +7,7 @@ import Landing from './Containers/Landing';
 import Login from './Containers/Login';
 import Dashboard from './Containers/Dashboard';
 import PrivateRoute from './Components/PrivateRoute';
+import RedirectTo from './Components/RedirectTo';
 import NotFound from './Components/NotFound';
 import './App.css';
 
@@ -22,6 +23,7 @@ function App() {
           <Route path='/' exact component={Landing} />
           <Route path='/login' exact component={Login} />
           <PrivateRoute path='/dashboard' exact component={Dashboard} />
+          <Route path='/:shortUrl' exact component={RedirectTo} />
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>

@@ -20,6 +20,7 @@ export default function (state = initialState, action) {
         shortUrl: '',
         shortened: false,
       };
+
     default:
       return state;
   }
