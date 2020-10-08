@@ -38,12 +38,13 @@ body {
   align-items: center;
 }
 
-.primary-text {
-  color: #0186da;
+.img-feature {
+  width: 100px;
+  height: 100px;
 }
 
-.card-width {
-  width: 35rem;
+.primary-text {
+  color: #0186da;
 }
 
 .login-form {
@@ -52,8 +53,9 @@ body {
   padding: 20px;
 }
 
-@media only screen and (max-width: 500px) {
-  .card-width {
-    width: 100%;
-  }
+.shorten-url-card {
+  width: 90%;
+  border: 1px solid #0186da !important;
+  border-radius: 10px;
+  padding: 20px;
 }

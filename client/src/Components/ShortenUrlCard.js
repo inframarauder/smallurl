@@ -3,7 +3,7 @@ import { Card, Button, Form } from 'react-bootstrap';
 
 const ShortenUrlCard = () => {
   return (
-    <Card className='text-center card-width'>
+    <Card className='text-center shorten-url-card'>
       <Card.Body>
         <Card.Title>Enter your URL here!</Card.Title>
         <Form>
