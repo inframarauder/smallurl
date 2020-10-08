@@ -5,6 +5,8 @@ import store from './Redux/store';
 import { loadUser } from './Redux/actions/auth.actions';
 import Landing from './Containers/Landing';
 import Login from './Containers/Login';
+import Dashboard from './Containers/Dashboard';
+import PrivateRoute from './Components/PrivateRoute';
 import NotFound from './Components/NotFound';
 import './App.css';
 
@@ -19,6 +21,7 @@ function App() {
         <Switch>
           <Route path='/' exact component={Landing} />
           <Route path='/login' exact component={Login} />
+          <PrivateRoute path='/dashboard' exact component={Dashboard} />
           <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
