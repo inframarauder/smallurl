@@ -22,6 +22,7 @@ function App() {
         <Switch>
           <Route path='/' exact component={Landing} />
           <Route path='/login' exact component={Login} />
+          <Route path='/signup' exact render={() => <Login type='signup' />} />
           <PrivateRoute path='/dashboard' exact component={Dashboard} />
           <Route path='/:shortUrl' exact component={RedirectTo} />
           <Route component={NotFound} />

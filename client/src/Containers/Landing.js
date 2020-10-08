@@ -19,7 +19,7 @@ const Landing = () => {
             with us and you're all set!
           </p>
           <p className='text-center my-4'>
-            <a href='/login'>
+            <a href='/signup'>
               <Button variant='primary' size='lg'>
                 Signup Now
                 <br />
