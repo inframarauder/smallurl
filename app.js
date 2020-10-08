@@ -27,11 +27,6 @@ mongoose
     process.exit(-1);
   });
 
-//configure routes:
-app.get('/', (req, res) => {
-  res.send('working');
-});
-
 app.use('/api', api);
 
 if (process.env.NODE_ENV === 'production') {
