@@ -1,5 +1,6 @@
 import { SHORTEN_URL_SUCCESS, SHORTEN_URL_FAILURE } from '../actionTypes';
 import { toast } from 'react-toastify';
+import { getDashboard } from './dashboard.actions';
 import Api from '../../Services';
 
 export const quickShorten = (body) => async (dispatch) => {
@@ -20,7 +21,7 @@ export const quickShorten = (body) => async (dispatch) => {
 export const createShortUrl = (body) => async (dispatch) => {
   try {
     const { data } = await Api.createShorUrl(body);
-
+    dispatch(getDashboard());
     dispatch({
       type: SHORTEN_URL_SUCCESS,
       payload: data,
