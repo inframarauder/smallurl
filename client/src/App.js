@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from './Redux/store';
 import Landing from './Containers/Landing';
 import Login from './Containers/Login';
+import NotFound from './Components/NotFound';
 import './App.css';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Switch>
           <Route path='/' exact component={Landing} />
           <Route path='/login' exact component={Login} />
+          <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
     </Provider>

@@ -19,6 +19,7 @@ export const signup = (body) => async (dispatch) => {
 
 export const login = (body) => async (dispatch) => {
   try {
+    console.log('here');
     const { data } = await Api.login(body);
     localStorage.setItem('token', data.token);
     dispatch({

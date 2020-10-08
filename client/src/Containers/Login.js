@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { Container, Button, Form } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signup, login } from '../Redux/actions/auth.action';
+import { signup, login } from '../Redux/actions/auth.actions';
 import Header from '../Components/Header';
 
 const Login = (props) => {
@@ -60,18 +60,17 @@ const Login = (props) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    type: ownProps.type,
-    isLoggedIn: state.isLoggedIn,
-  };
-};
+const mapStateToProps = (state, ownProps) => ({
+  isLoggedIn: state.auth.isLoggedIn,
+  type: ownProps.type,
+});
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const dispatchFunction = ownProps.type === 'signup' ? signup : login;
   return {
-    submitForm: dispatchFunction,
+    submitForm:
+      ownProps.type === 'signup'
+        ? (body) => dispatch(signup(body))
+        : (body) => dispatch(login(body)),
   };
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
