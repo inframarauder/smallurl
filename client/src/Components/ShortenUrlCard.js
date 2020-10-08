@@ -52,7 +52,10 @@ const ShortenUrlCard = ({ url, quickShorten }) => {
       </Card.Body>
       {url.shortened && (
         <Card.Footer className='text-muted'>
-          Shortened Link : {`${window.location.hostname}/${url.shortUrl}`}
+          Shortened Link : 
+          <a href={`${window.location.hostname}/${url.shortUrl}`}>
+            {`${window.location.hostname}/${url.shortUrl}`}{' '}
+          </a>
         </Card.Footer>
       )}
     </Card>
