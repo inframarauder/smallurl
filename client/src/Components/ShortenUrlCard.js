@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Card, Button, Form } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
+import { connect } from 'react-redux';
+import { quickShorten } from '../Redux/actions/url.actions';
 
-const ShortenUrlCard = () => {
+const ShortenUrlCard = ({ url, quickShorten }) => {
   const [state, setState] = useState({ longUrl: '' });
 
   const handleChange = (e) => {
@@ -22,6 +24,8 @@ const ShortenUrlCard = () => {
     );
     if (!urlPattern.test(state.longUrl)) {
       toast.error('Invalid URL entered!');
+    } else {
+      quickShorten(state);
     }
   };
 
@@ -46,8 +50,18 @@ const ShortenUrlCard = () => {
           </Button>
         </Form>
       </Card.Body>
+      {url.shortened && (
+        <Card.Footer className='text-muted'>
+          Shortened Link : {`${window.location.hostname}/${url.shortUrl}`}
+        </Card.Footer>
+      )}
     </Card>
   );
 };
 
-export default ShortenUrlCard;
+const mapStateToProps = (state) => ({ url: state.url });
+const mapDispatchToProps = (dispatch) => {
+  return { quickShorten: (body) => dispatch(quickShorten(body)) };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShortenUrlCard);
