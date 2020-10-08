@@ -21,7 +21,11 @@ const RedirectTo = (props) => {
     // eslint-disable-next-line
   }, []);
 
-  return loading ? <div>Please wait....</div> : null;
+  return loading ? (
+    <div className='center-content' style={{ fontSize: '1.2rem' }}>
+      Redirecting....
+    </div>
+  ) : null;
 };
 
 export default RedirectTo;
