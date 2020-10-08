@@ -6,6 +6,11 @@ import { quickShorten, createShortUrl } from '../Redux/actions/url.actions';
 
 const ShortenUrlCard = ({ url, auth, createShortUrl, quickShorten }) => {
   const [state, setState] = useState({ longUrl: '' });
+  const [baseUrl] = useState(() =>
+    process.env.NODE_ENV === 'production'
+      ? window.location.hostname
+      : window.location.hostname + ':' + window.location.port
+  );
 
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -52,10 +57,8 @@ const ShortenUrlCard = ({ url, auth, createShortUrl, quickShorten }) => {
       </Card.Body>
       {url.shortened && (
         <Card.Footer className='text-muted'>
-          Shortened Link :
-          <a href={`${window.location.hostname}/${url.shortUrl}`}>
-            {`${window.location.hostname}/${url.shortUrl}`}{' '}
-          </a>
+          Short URL :
+          <a href={`/${url.shortUrl}`}>{`${baseUrl}/${url.shortUrl}`} </a>
         </Card.Footer>
       )}
     </Card>

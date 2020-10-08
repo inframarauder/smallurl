@@ -10,6 +10,11 @@ import {
 
 const DashboardTable = ({ dashboard, getDashboard, deleteUrl, searchUrl }) => {
   const [search, setSearch] = useState('');
+  const [baseUrl] = useState(() =>
+    process.env.NODE_ENV === 'production'
+      ? window.location.hostname
+      : window.location.hostname + ':' + window.location.port
+  );
 
   useEffect(() => {
     getDashboard();
@@ -70,9 +75,7 @@ const DashboardTable = ({ dashboard, getDashboard, deleteUrl, searchUrl }) => {
                 <a href={url.longUrl}>{url.longUrl}</a>
               </td>
               <td>
-                <a
-                  href={`${window.location.hostname}/${url.shortUrl}`}
-                >{`${window.location.hostname}/${url.shortUrl}`}</a>
+                <a href={`/${url.shortUrl}`}>{`${baseUrl}/${url.shortUrl}`} </a>
               </td>
               <td>{url.clicks}</td>
               <td>
