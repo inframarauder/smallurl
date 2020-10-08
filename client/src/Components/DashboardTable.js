@@ -2,28 +2,28 @@ import React, { useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-import { getDashboard } from '../Redux/actions/dashboard.actions';
+import { getDashboard, deleteUrl } from '../Redux/actions/dashboard.actions';
 
-const DashboardTable = ({ dashboard, getDashboard }) => {
+const DashboardTable = ({ dashboard, getDashboard, deleteUrl }) => {
   // eslint-disable-next-line
   useEffect(() => getDashboard(), []);
 
   return dashboard.loading ? (
     <div>Loading...</div>
   ) : (
-    <Table striped bordered hover className='my-4'>
+    <Table striped bordered hover responsive className='my-4'>
       <ToastContainer />
       <thead>
         <tr>
           <th>Long URL</th>
           <th>Short URL</th>
           <th>No. of Clicks</th>
-          <th></th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
         {dashboard.urls.map((url) => (
-          <tr>
+          <tr key={url._id}>
             <td>
               <a href={url.longUrl}>{url.longUrl}</a>
             </td>
@@ -34,7 +34,7 @@ const DashboardTable = ({ dashboard, getDashboard }) => {
             </td>
             <td>{url.clicks}</td>
             <td>
-              <Button variant='danger'>
+              <Button variant='danger' onClick={() => deleteUrl(url._id)}>
                 <i class='fa fa-trash'></i>
               </Button>
             </td>
@@ -52,6 +52,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     getDashboard: () => dispatch(getDashboard()),
+    deleteUrl: (id) => dispatch(deleteUrl(id)),
   };
 };
 

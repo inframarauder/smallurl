@@ -16,3 +16,14 @@ export const getDashboard = () => async (dispatch) => {
     dispatch({ type: GET_DASHBOARD_FAILURE });
   }
 };
+
+export const deleteUrl = (id) => async (dispatch) => {
+  try {
+    await Api.deleteUrl(id);
+    dispatch(getDashboard());
+  } catch (error) {
+    if (error.response) {
+      toast.error(error.response.data.error);
+    }
+  }
+};
