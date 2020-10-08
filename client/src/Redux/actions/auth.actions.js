@@ -49,7 +49,9 @@ export const logout = () => (dispatch) => {
 };
 
 export const loadUser = () => (dispatch) => {
-  if (localStorage.getItem('user')) {
+  const token = localStorage.getItem('token');
+  const user = localStorage.getItem('user');
+  if (token && user) {
     dispatch({ type: LOGIN_SUCCESS, payload: localStorage.getItem('user') });
   } else {
     dispatch({ type: LOGIN_FAILURE });

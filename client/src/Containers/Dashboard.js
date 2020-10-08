@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import Header from '../Components/Header';
+import ShortenUrlCard from '../Components/ShortenUrlCard';
 
 const Dashboard = ({ user }) => {
   return (
@@ -11,6 +12,7 @@ const Dashboard = ({ user }) => {
         <legend className='text-center'>
           Logged in as : <span className='primary-text'>{user}</span>
         </legend>
+        <ShortenUrlCard />
       </Container>
     </>
   );

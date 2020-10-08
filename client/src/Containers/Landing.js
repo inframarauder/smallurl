@@ -33,13 +33,21 @@ const Landing = () => {
           <Row className='my-4'>
             <Col sm={6}>
               <p className='text-center'>
-                <img src='/images/easy.png' className='img-feature' />
+                <img
+                  src='/images/easy.png'
+                  className='img-feature'
+                  alt='feature'
+                />
               </p>
               <p className='primary-text text-center'>Free and Easy to use</p>
             </Col>
             <Col sm={6}>
               <p className='text-center'>
-                <img src='/images/secure.png' className='img-feature' />
+                <img
+                  src='/images/secure.png'
+                  className='img-feature'
+                  alt='feature'
+                />
               </p>
               <p className='primary-text text-center'>Secure and Reliable</p>
             </Col>
@@ -47,13 +55,21 @@ const Landing = () => {
           <Row className='my-4'>
             <Col sm={6}>
               <p className='text-center'>
-                <img src='/images/https.png' className='img-feature' />
+                <img
+                  src='/images/https.png'
+                  className='img-feature'
+                  alt='feature'
+                />
               </p>
               <p className='primary-text text-center'>HTTPS support enabled</p>
             </Col>
             <Col sm={6}>
               <p className='text-center'>
-                <img src='/images/analytics.png' className='img-feature' />
+                <img
+                  src='/images/analytics.png'
+                  className='img-feature'
+                  alt='feature'
+                />
               </p>
               <p className='primary-text text-center'>
                 Custom dashboard with

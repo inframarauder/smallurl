@@ -17,3 +17,19 @@ export const quickShorten = (body) => async (dispatch) => {
     dispatch({ type: SHORTEN_URL_FAILURE });
   }
 };
+export const createShortUrl = (body) => async (dispatch) => {
+  try {
+    const { data } = await Api.createShorUrl(body);
+
+    dispatch({
+      type: SHORTEN_URL_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    console.error(error);
+    if (error.response) {
+      toast.error(error.response.data.error);
+    }
+    dispatch({ type: SHORTEN_URL_FAILURE });
+  }
+};

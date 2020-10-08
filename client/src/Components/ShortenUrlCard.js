@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Card, Button, Form } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import { connect } from 'react-redux';
-import { quickShorten } from '../Redux/actions/url.actions';
+import { quickShorten, createShortUrl } from '../Redux/actions/url.actions';
 
-const ShortenUrlCard = ({ url, quickShorten }) => {
+const ShortenUrlCard = ({ url, auth, createShortUrl, quickShorten }) => {
   const [state, setState] = useState({ longUrl: '' });
 
   const handleChange = (e) => {
@@ -25,7 +25,7 @@ const ShortenUrlCard = ({ url, quickShorten }) => {
     if (!urlPattern.test(state.longUrl)) {
       toast.error('Invalid URL entered!');
     } else {
-      quickShorten(state);
+      auth.isLoggedIn ? createShortUrl(state) : quickShorten(state);
     }
   };
 
@@ -52,7 +52,7 @@ const ShortenUrlCard = ({ url, quickShorten }) => {
       </Card.Body>
       {url.shortened && (
         <Card.Footer className='text-muted'>
-          Shortened Link : 
+          Shortened Link :
           <a href={`${window.location.hostname}/${url.shortUrl}`}>
             {`${window.location.hostname}/${url.shortUrl}`}{' '}
           </a>
@@ -62,9 +62,12 @@ const ShortenUrlCard = ({ url, quickShorten }) => {
   );
 };
 
-const mapStateToProps = (state) => ({ url: state.url });
+const mapStateToProps = (state) => ({ url: state.url, auth: state.auth });
 const mapDispatchToProps = (dispatch) => {
-  return { quickShorten: (body) => dispatch(quickShorten(body)) };
+  return {
+    quickShorten: (body) => dispatch(quickShorten(body)),
+    createShortUrl: (body) => dispatch(createShortUrl(body)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShortenUrlCard);
