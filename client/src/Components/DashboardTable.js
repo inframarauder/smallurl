@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button, Form } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import {
   getDashboard,
   deleteUrl,
@@ -76,6 +76,20 @@ const DashboardTable = ({ dashboard, getDashboard, deleteUrl, searchUrl }) => {
               </td>
               <td>
                 <a href={`/${url.shortUrl}`}>{`${baseUrl}/${url.shortUrl}`} </a>
+                <span className='copy-btn'>
+                  <Button
+                    size='sm'
+                    variant='success'
+                    onClick={() => {
+                      navigator.clipboard.writeText(
+                        `${baseUrl}/${url.shortUrl}`.trim()
+                      );
+                      toast.success('Copied');
+                    }}
+                  >
+                    Copy
+                  </Button>
+                </span>
               </td>
               <td>{url.clicks}</td>
               <td>

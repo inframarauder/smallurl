@@ -59,6 +59,20 @@ const ShortenUrlCard = ({ url, auth, createShortUrl, quickShorten }) => {
         <Card.Footer className='text-muted'>
           Short URL :
           <a href={`/${url.shortUrl}`}>{`${baseUrl}/${url.shortUrl}`} </a>
+          <span className='copy-btn'>
+            <Button
+              size='sm'
+              variant='success'
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  `${baseUrl}/${url.shortUrl}`.trim()
+                );
+                toast.success('Copied!');
+              }}
+            >
+              Copy
+            </Button>
+          </span>
         </Card.Footer>
       )}
     </Card>
