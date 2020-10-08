@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev-server": "nodemon app.js",
-    "prod-server": "node app.js",
+    "start": "node app.js",
     "client": "cd client && npm start",
-    "dev": "concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run client\""
+    "dev": "concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run client\"",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
