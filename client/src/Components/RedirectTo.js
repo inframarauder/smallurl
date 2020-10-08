@@ -18,6 +18,7 @@ const RedirectTo = (props) => {
         window.location.href = '/not/found';
       }
     })();
+    // eslint-disable-next-line
   }, []);
 
   return loading ? <div>Please wait....</div> : null;

@@ -1,4 +1,8 @@
-import { GET_DASHBOARD_FAILURE, GET_DASHBOARD_SUCCESS } from '../actionTypes';
+import {
+  GET_DASHBOARD_FAILURE,
+  GET_DASHBOARD_SUCCESS,
+  DASHBOARD_REQUEST,
+} from '../actionTypes';
 import Api from '../../Services';
 import { toast } from 'react-toastify';
 
@@ -25,5 +29,20 @@ export const deleteUrl = (id) => async (dispatch) => {
     if (error.response) {
       toast.error(error.response.data.error);
     }
+  }
+};
+
+export const searchUrl = (longUrl) => async (dispatch) => {
+  try {
+    dispatch({ type: DASHBOARD_REQUEST });
+    const { data } = await Api.searchUrl(longUrl);
+    console.log(data);
+    dispatch({ type: GET_DASHBOARD_SUCCESS, payload: [data] });
+  } catch (error) {
+    console.log(error);
+    if (error.response) {
+      toast.error(error.response.data.error);
+    }
+    dispatch({ type: GET_DASHBOARD_FAILURE });
   }
 };
