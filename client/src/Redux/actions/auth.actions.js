@@ -1,4 +1,5 @@
 import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT } from '../actionTypes';
+import { toast } from 'react-toastify';
 import Api from '../../Services';
 
 export const signup = (body) => async (dispatch) => {
@@ -10,7 +11,10 @@ export const signup = (body) => async (dispatch) => {
       payload: data.email,
     });
   } catch (error) {
-    console.error(error.response.data.error);
+    console.error(error);
+    if (error.response) {
+      toast.error(error.response.data.error);
+    }
     dispatch({
       type: LOGIN_FAILURE,
     });
@@ -19,7 +23,6 @@ export const signup = (body) => async (dispatch) => {
 
 export const login = (body) => async (dispatch) => {
   try {
-    console.log('here');
     const { data } = await Api.login(body);
     localStorage.setItem('token', data.token);
     dispatch({
@@ -27,7 +30,10 @@ export const login = (body) => async (dispatch) => {
       payload: data.email,
     });
   } catch (error) {
-    console.error(error.response.data.error);
+    console.error(error);
+    if (error.response) {
+      toast.error(error.response.data.error);
+    }
     dispatch({
       type: LOGIN_FAILURE,
     });

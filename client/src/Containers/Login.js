@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signup, login } from '../Redux/actions/auth.actions';
 import Header from '../Components/Header';
+import { ToastContainer } from 'react-toastify';
 
 const Login = (props) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -22,6 +23,7 @@ const Login = (props) => {
     <Fragment>
       <Header />
       <Container className='center-content'>
+        <ToastContainer />
         <Form className='login-form my-4' onSubmit={(e) => handleSubmit(e)}>
           <legend className='text-center primary-text'>
             Login/Signup to continue :{' '}
