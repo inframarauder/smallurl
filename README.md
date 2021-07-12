@@ -1,4 +1,4 @@
-# mern-url-shortener
+# mernshort
 
 A simple url shortener build using the MERN stack.
 Live Demo : https://mernurlshortener.herokuapp.com
